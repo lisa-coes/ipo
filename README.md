@@ -1,14 +1,14 @@
 # IPO (Input-Production-Output) Protocol 0.1
 
-*Link to web: []()  *
+To download the protocol folder structure click [here](https://github.com/juancarloscastillo/ipo/archive/master.zip) (and/or fork this project in Github)
+
+----
 
 This is a project folder template pretty much based on the **TIER** protocol (Teaching Integrity in Empirical Research). TIER "promotes the integration of principles and practices related to transparency and replicability in the research training of social scientists." (more information in [https://www.projecttier.org/](https://www.projecttier.org/)).
 
-The implementation of reproducibility in this kinds of protocols is based on generating a self-contained set of files that can be shared and executed by anyone. In other words, it must have all you need to run and re-run the analysis.
+The implementation of reproducibility in this kinds of protocols is based on generating a self-contained set of files organized in a project structure that can be shared and executed by anyone. In other words, it must have all you need to run and re-run the analysis.
 
-TIER proposes a standardized way to organize a research project in one single folder (the `project` folder) which at the same time organizes files in a structured set of folders, called TIER protocol. Its 4th version is available in the Open Science Framework, link [here](https://osf.io/4cxed/).
-
-The **IPO** protocol follows the rationale of TIER, with some minor innovations:
+The **IPO** protocol follows the rationale of TIER, with some innovations:
 
 - attempts a model easy to memorize and related with the analysis workflow (Input-Production-Output), where production refers to processing and analyzing data.
 
@@ -46,10 +46,6 @@ The **IPO** protocol follows the rationale of TIER, with some minor innovations:
 - paper.Rmd / paper.html: the paper
 
 ```
-## Download
-
-- To download a zip file with the folders & files click [here]()
-- you might also fork this project from Github, which is a better option in order to keep track of the use of this protocol.
 
 ## Notes
 
