@@ -83,4 +83,7 @@ dev.copy(png,"output/graphs/graph1.png",width=600,
       	height=600); dev.off()
 ```
   Then, to call the graph from the paper.Rmd file:
+
+```
 ![](output/graphs/graph1.png)
+```
