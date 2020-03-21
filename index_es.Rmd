@@ -1,0 +1,20 @@
+---
+title: "IPO-es"
+output:
+    html_document:
+        theme: readable
+        css: style.css
+        toc: TRUE
+        #toc_float: TRUE
+        includes:
+          before_body: header_es.html
+---
+<div class="mycontent">
+
+
+# IPO (Input-Producción-Output) Protocolo para flujo académico reproducible
+
+(en traducción)
+
+<br><br><br>
+</div>
