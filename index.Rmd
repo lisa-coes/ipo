@@ -8,37 +8,35 @@ output:
         #toc_float: TRUE
         includes:
           before_body: header.html
+          in_header: head_github-activity.html
 ---
 <div class="mycontent">
 
 
 # IPO (Input-Production-Output) Protocol 0.1 for Reproducible Academic Production
 
-To download the protocol folder structure click [here](https://github.com/juancarloscastillo/ipo/archive/master.zip) (and/or fork this project in Github)
+To download the protocol folder structure click [here](https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz).
 
 ----
 
 This is a project folder template pretty much based on the **TIER** protocol (Teaching Integrity in Empirical Research). TIER "promotes the integration of principles and practices related to transparency and replicability in the research training of social scientists." (more information in [https://www.projecttier.org/](https://www.projecttier.org/)).
 
-The implementation of reproducibility in this kinds of protocols is based on generating a self-contained set of files organized in a project structure that can be shared and executed by anyone. In other words, it must have all you need to run and re-run the analysis.
+The implementation of reproducibility in this kinds of protocols is based on generating a **self-contained set of files** organized in a project structure that can be shared and executed by anyone. In other words, it must have all you need to run and re-run the analysis.
 
 The **IPO** protocol follows the rationale of TIER, with some innovations:
 
-- attempts a model easy to memorize and related with the analysis workflow (Input-Production-Output), where production refers to processing and analyzing data.
+- attempts a model easy to memorize and related with the analysis workflow (Input-Production-Output=!PO), where production refers to processing and analyzing data.
 
 - adds an "Input" folder, which is has a broader scope containing the original "Data" folder but also other possible inputs, such as external images and bibliography files.
 
-- The Data folder is also simplified, including now only an "Original" and "Processed" structure.
+- the Data folder is also simplified, including now only an "Original" and "Processed" structure.
 
-- it is more specifically oriented for working with open software & collaboration tools, such as R/Rmarkdown and Git/Github:
+- it modifies the files to .md (Markdown files) instead of .txt, which is a plain text language that can be then converted to other formats such as pdf and/or html (for instance, when using R / Rmarkdown). But, in the core, they are simple txt files with just another extension.
 
-  - it modifies the files to .Rmd (Rmarkdown) instead of .txt, which after being rendered in R (vía knitr) generates the corresponding html files
-
-  - in the root the original paper.pdf becomes paper.Rmd and the corresponding publication file paper.html
-
-  - in the root there is a project.Rproj file for working with the project feature in Rstudio (more information [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)).
 
 ### Files & Folder Structure
+
+To download the protocol folder structure click [here](https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz).
 
 ```
 ├── input: external information such as images, documents, bib files
@@ -58,7 +56,7 @@ The **IPO** protocol follows the rationale of TIER, with some innovations:
 │   ├── tables
 |
 - README.md : the general introductory file
-- paper.Rmd / paper.html: the paper
+- paper.md / paper.html / paper.pdf: the paper
 
 ```
 
@@ -111,15 +109,14 @@ dev.copy(png,"output/graphs/graph1.png",width=600,
 
 ### Further work:
 
-- different versions:
-  - IPO (plain): basic structure available for different analysis formats and workflows, such as spss/word/excel
-  - IPO-R: adds specific functions and instructions for working in R/Rmarkdown
-  - IPO-RG: add version control, collaboration and web publishing with Git/Github/Github pages
+- IPO-RGit: maintaining the same basic structure, this version is an upgrade for taking advantage of all the reproducibility, collaboration and publication tools offerede by the Rmarkdown/Github work environments. An example of this wor-in-progress implementation can be seen [here.](https://juancarloscastillo.github.io/merit-scale/) 
+
+- Spanish translation
 
 
-## Español
+## Github activity feed
 
-(traducir ...)
+<div id="feed"></div>
 
 
 # {-}
