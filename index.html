@@ -309,7 +309,7 @@ $(document).ready(function () {
 <div id="particles-js">
   <div id="intro">
     <h1><font size=100px> IPO</font> </h1>
-    <h1><font size=10px> Input -> Production -> Output </font></h1>_
+    <h1><font size=10px> Input -> Processing -> Output </font></h1>_
     <p><font size=6> Reproducible academic workflow protocol </font></p>
 </div>
 </div>
@@ -327,14 +327,14 @@ $(document).ready(function () {
 
 
 <div class="mycontent">
-<h1 id="ipo-input-production-output-protocol-0.1-for-reproducible-academic-production">IPO (Input-Production-Output) Protocol 0.1 for Reproducible Academic Production</h1>
+<h1 id="ipo-input-processing-output-protocol-0.1-for-reproducible-research">IPO (Input-Processing-Output) Protocol 0.1 for Reproducible Research</h1>
 <p>To download the protocol folder structure click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">here</a>.</p>
 <hr />
 <p>This is a project folder template pretty much based on the <strong>TIER</strong> protocol (Teaching Integrity in Empirical Research). TIER “promotes the integration of principles and practices related to transparency and replicability in the research training of social scientists.” (more information in <a href="https://www.projecttier.org/">https://www.projecttier.org/</a>).</p>
 <p>The implementation of reproducibility in this kinds of protocols is based on generating a <strong>self-contained set of files</strong> organized in a project structure that can be shared and executed by anyone. In other words, it must have all you need to run and re-run the analysis.</p>
 <p>The <strong>IPO</strong> protocol follows the rationale of TIER, with some innovations:</p>
 <ul>
-<li><p>attempts a model easy to memorize and related with the analysis workflow (Input-Production-Output=!PO), where production refers to processing and analyzing data.</p></li>
+<li><p>attempts a model easy to memorize and related with the analysis workflow (Input-Processing-Output=IPO), where processing refers to preparing and analyzing data.</p></li>
 <li><p>adds an “Input” folder, which is has a broader scope containing the original “Data” folder but also other possible inputs, such as external images and bibliography files.</p></li>
 <li><p>the Data folder is also simplified, including now only an “Original” and “Processed” structure.</p></li>
 <li><p>it modifies the files to .md (Markdown files) instead of .txt, which is a plain text language that can be then converted to other formats such as pdf and/or html (for instance, when using R / Rmarkdown). But, in the core, they are simple txt files with just another extension.</p></li>
@@ -349,7 +349,7 @@ $(document).ready(function () {
 │   ├── bib: bilbliography files
 │   ├── prereg: pre-register files when available
 |
-├── production:
+├── processing:
 │   - preparation.Rmd
 │   - analysis.Rmd
 │
@@ -368,12 +368,12 @@ $(document).ready(function () {
 </ul>
 <h3 id="notes">Notes</h3>
 <ul>
-<li><p>as the R/Rmarkdown environment allows combining text, analysis &amp; outputs, the corresponding folders (production &amp; output) could sound redundant. This is probably the case for brief analysis and short reports. Nevertheless, when working on a paper/thesis/group project it is certainly advisable to separate inputs, analysis and outputs for the sake of order and reproducibility despite working with Rmarkdown.</p></li>
+<li><p>as the R/Rmarkdown environment allows combining text, analysis &amp; outputs, the corresponding folders (processing &amp; output) could sound redundant. This is probably the case for brief analysis and short reports. Nevertheless, when working on a paper/thesis/group project it is certainly advisable to separate inputs, analysis and outputs for the sake of order and reproducibility despite working with Rmarkdown.</p></li>
 <li><p>for making the work easier in Rstudio you might want to make the <code>project</code> folder a Rproject folder. This will make that the working directory automatically will be referred to the root, besides activating other functions within Rstudio. For this, just go to File-&gt;New project-&gt;Existing directory, and point to the project folder. This will create a file with .Rproj extension that when clicked it will open Rstudio and the project folder as a root. In this way it avoids generating local individual working directories (the R command <code>setwd</code>), which do not facilitates reproducibility.</p></li>
 <li><p>besides having one project folder where all information is contained, the technical key for working within this structure is to save and load files located in different places through <strong>relative paths</strong> (RP), which allows connecting different files within the same project folder. For instance, for loading a data file from the <code>original</code> folder from the <code>preparation.Rmd</code> script:</p></li>
 </ul>
 <pre><code>load(&quot;../input/data/original/data.csv&quot;)</code></pre>
-<p>The <code>../</code> characters means “one level up” in the folder structure. In this case, taking as a reference a script within the <code>production</code> folder, we need to go up to the <code>project</code> or root folder, and from there go down to <code>input/data/original/data.csv</code></p>
+<p>The <code>../</code> characters means “one level up” in the folder structure. In this case, taking as a reference a script within the <code>processing</code> folder, we need to go up to the <code>project</code> or root folder, and from there go down to <code>input/data/original/data.csv</code></p>
 <ul>
 <li>for saving tables and any output produced in R use the function <code>sink</code>. For instance, for a <code>stargazer</code> descriptive table from <code>data</code>:</li>
 </ul>

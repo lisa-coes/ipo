@@ -12,7 +12,7 @@ output:
 <div class="mycontent">
 
 
-# IPO (Input-Producción-Output) Protocolo para flujo académico reproducible
+# IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible
 
 (en traducción)
 

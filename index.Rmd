@@ -13,7 +13,7 @@ output:
 <div class="mycontent">
 
 
-# IPO (Input-Production-Output) Protocol 0.1 for Reproducible Academic Production
+# IPO (Input-Processing-Output) Protocol 0.1 for Reproducible Research
 
 To download the protocol folder structure click [here](https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz).
 
@@ -25,7 +25,7 @@ The implementation of reproducibility in this kinds of protocols is based on gen
 
 The **IPO** protocol follows the rationale of TIER, with some innovations:
 
-- attempts a model easy to memorize and related with the analysis workflow (Input-Production-Output=!PO), where production refers to processing and analyzing data.
+- attempts a model easy to memorize and related with the analysis workflow (Input-Processing-Output=IPO), where processing refers to preparing and analyzing data.
 
 - adds an "Input" folder, which is has a broader scope containing the original "Data" folder but also other possible inputs, such as external images and bibliography files.
 
@@ -47,7 +47,7 @@ To download the protocol folder structure click [here](https://juancarloscastill
 │   ├── bib: bilbliography files
 │   ├── prereg: pre-register files when available
 |
-├── production:
+├── processing:
 │   - preparation.Rmd
 │   - analysis.Rmd
 │
@@ -72,7 +72,7 @@ To download the protocol folder structure click [here](https://juancarloscastill
 
 ### Notes
 
-- as the R/Rmarkdown environment allows combining text, analysis & outputs, the corresponding folders (production & output) could sound redundant. This is probably the case for brief analysis and short reports. Nevertheless, when working on a paper/thesis/group project it is certainly advisable to separate inputs, analysis and outputs for the sake of order and reproducibility despite working with Rmarkdown.
+- as the R/Rmarkdown environment allows combining text, analysis & outputs, the corresponding folders (processing & output) could sound redundant. This is probably the case for brief analysis and short reports. Nevertheless, when working on a paper/thesis/group project it is certainly advisable to separate inputs, analysis and outputs for the sake of order and reproducibility despite working with Rmarkdown.
 
 - for making the work easier in Rstudio you might want to make the `project` folder a Rproject folder. This will make that the working directory automatically will be referred to the root, besides activating other functions within Rstudio. For this, just go to File->New project->Existing directory, and point to the project folder. This will create a file with .Rproj extension that when clicked it will open Rstudio and the project folder as a root. In this way it avoids generating local individual working directories (the R command `setwd`), which do not facilitates reproducibility.
 
@@ -81,7 +81,7 @@ To download the protocol folder structure click [here](https://juancarloscastill
 ```
 load("../input/data/original/data.csv")
 ```
-  The `../` characters means "one level up" in the folder structure. In this case, taking as a reference a script within the `production` folder, we need to go up to the `project` or root folder, and from there go down to  `input/data/original/data.csv`
+  The `../` characters means "one level up" in the folder structure. In this case, taking as a reference a script within the `processing` folder, we need to go up to the `project` or root folder, and from there go down to  `input/data/original/data.csv`
 
 - for saving tables and any output produced in R use the function `sink`. For instance, for a `stargazer` descriptive table from `data`:
 
@@ -109,7 +109,7 @@ dev.copy(png,"output/graphs/graph1.png",width=600,
 
 ### Further work:
 
-- IPO-RGit: maintaining the same basic structure, this version is an upgrade for taking advantage of all the reproducibility, collaboration and publication tools offerede by the Rmarkdown/Github work environments. An example of this wor-in-progress implementation can be seen [here.](https://juancarloscastillo.github.io/merit-scale/) 
+- IPO-RGit: maintaining the same basic structure, this version is an upgrade for taking advantage of all the reproducibility, collaboration and publication tools offerede by the Rmarkdown/Github work environments. An example of this wor-in-progress implementation can be seen [here.](https://juancarloscastillo.github.io/merit-scale/)
 
 - Spanish translation
 
