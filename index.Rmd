@@ -25,6 +25,9 @@ The implementation of reproducibility in this kinds of protocols is based on gen
 
 The **IPO** protocol follows the rationale of TIER, with some innovations:
 
+![](standards.png)
+
+
 - attempts a model easy to memorize and related with the analysis workflow (Input-Processing-Output=IPO), where processing refers to preparing and analyzing data.
 
 - adds an "Input" folder, which is has a broader scope containing the original "Data" folder but also other possible inputs, such as external images and bibliography files.

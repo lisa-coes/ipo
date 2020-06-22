@@ -24,6 +24,21 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+<link rel="stylesheet" href="github-activity-0.1.5.min.css">
+
+<script src="//code.jquery.com/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+<script type="text/javascript" src="github-activity-0.1.5.min.js"></script>
+
+<script>
+GitHubActivity.feed({
+	username: "juancarloscastillo",
+	repository: "ipo", // optional
+	selector: "#feed",
+	limit: 20 // optional
+});
+</script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -294,7 +309,7 @@ $(document).ready(function () {
 <div id="particles-js">
   <div id="intro">
     <h1><font size=100px> IPO</font> </h1>
-    <h1><font size=10px> Input -> Producción -> Output </font></h1>_
+    <h1><font size=10px> Input -> Procesamiento -> Output </font></h1>_
     <p><font size=6> Protocolo para flujo de investigación reproducible </font></p>
 </div>
 </div>
@@ -313,7 +328,82 @@ $(document).ready(function () {
 
 <div class="mycontent">
 <h1 id="ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible">IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible</h1>
-<p>(en traducción)</p>
+<p>Para bajar un ejemplo de la estructura de carpetas click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
+<p>Comentarios y sugerencias a: <a href="juancastillov@uchile.cl">juancastillov@uchile.cl</a></p>
+<hr />
+<p>Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo <strong>TIER</strong> (Integridad de Enseñanza en Investigación Empírica). TIER “promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales”. (más información en <a href="https://www.projecttier.org/">https://www.projecttier.org/</a>).</p>
+<p>La implementación de la reproducibilidad en este tipo de protocolos se basa en generar un <strong>conjunto de archivos auto-contenidos</strong> organizado en una estructura de proyecto que cualquier persona pueda compartir y ejecutar. En otras palabras, debe tener todo lo que necesita para ejecutar y volver a ejecutar el análisis.</p>
+<p>El protocolo <strong>IPO</strong> sigue la lógica de TIER, pero con algunas innovaciones:</p>
+<p><img src="standards.png" /></p>
+<ul>
+<li><p>intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.</p></li>
+<li><p>agrega una carpeta “Input”, que tiene un alcance más amplio que contiene la carpeta “Datos” original de TIER, pero también otras posibles entradas, como imágenes externas y archivos de bibliografía.</p></li>
+<li><p>la carpeta de datos también se simplifica, incluyendo ahora solo una estructura “original” y “procesada”.</p></li>
+<li><p>modifica los archivos a .md/.Rmd (archivos Markdown) en lugar de .txt. Markdown es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Rmarkdown). Pero, en el fondo, son simples archivos txt con solo otra extensión.</p></li>
+</ul>
+<h3 id="archivos-y-estructura-de-carpetas">Archivos y estructura de carpetas</h3>
+<p>Para descargar un ejemplo de la estructura de carpetas del protocolo, haga clic <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
+<p>La estructura se detalle en el siguiente esquema:</p>
+<pre><code>├── input: información externa como datos, imágenes, documentos, archivos .bib:
+|   ├── data:
+│     ├── original : archivos de datos originales y metadatos disponibles
+│     ├── proc     : archivos de datos procesados
+│   ├── imagenes
+│   ├── bib: archivos de bibliografía
+│   ├── prereg: archivos de pre-registro si están disponibles
+|
+├── procesamiento:
+│   - preparacion.Rmd
+│   - analisis.Rmd
+│
+├── output: tablas, gráficos y otras salidas del procesamiento.
+│   ├── graphs
+│   ├── tables
+|
+- readme.md : archivo general de introducción
+- paper.md o paper.Rmd / paper.html / paper.pdf: el artículo/paper
+</code></pre>
+<h3 id="principios-básicos">Principios básicos</h3>
+<ul>
+<li><p>orden: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?</p></li>
+<li><p>comentar los códigos: registrar brevemente los motivos de cualquier decisión</p></li>
+<li><p>el código de preparación debería comenzar a cargando los datos originales y terminar guardando los datos procesados en la carpeta correspondiente (proc).</p></li>
+</ul>
+<p>El flujo de trabajo asociado a estos principios se presenta en el siguiente esquema:</p>
+<p><img src="https://multivariada.netlify.app/images/produccion2.png" /></p>
+<h3 id="notas">Notas</h3>
+<ul>
+<li><p>como el entorno R / Rmarkdown permite combinar texto, análisis y resultados, las carpetas correspondientes (procesamiento y salida) pueden sonar redundantes. Este es probablemente el caso de análisis breves e informes breves. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad a pesar de trabajar con Rmarkdown.</p></li>
+<li><p>para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta <code>project</code> una carpeta Rproject. Esto hará que el directorio de trabajo se remita automáticamente a la raíz, además de activar otras funciones dentro de Rstudio. Para esto, en Rstudio simplemente vaya a Archivo-&gt; Nuevo proyecto-&gt; Directorio existente y apunte a la carpeta del proyecto. Esto creará un archivo con la extensión .Rproj que, al hacer clic, abrirá Rstudio y la carpeta del proyecto como raíz. De esta manera, evita generar directorios de trabajo individuales locales (el comando R <code>setwd</code>), que no facilita la reproducibilidad. Si se logra entender por qué no se debe referir en el códugo a un directorio local (como con <code>setwd</code>), entonces está más cerca de entender el sentido de la reproducibilidad.</p></li>
+<li><p>además de tener una carpeta de proyecto donde está contenida toda la información, la clave técnica para trabajar dentro de esta estructura es guardar y cargar archivos ubicados en diferentes lugares a través de <strong>rutas relativas</strong> (relative paths), lo que permite conectar diferentes archivos dentro del mismo proyecto/carpeta. Por ejemplo, para cargar un archivo de datos desde la carpeta <code>original</code> desde el script<code>preparacion.Rmd</code>:</p></li>
+</ul>
+<pre><code>load(&quot;../input/data/original/data.csv&quot;)</code></pre>
+<p>Los caracteres <code>../</code> significan “un nivel más arriba” en la estructura de carpetas. En este caso, tomando como referencia una secuencia de comandos dentro de la carpeta <code>procesamiento</code>, debemos subir a la carpeta<code>proyecto</code> o raíz, y desde allí bajar a <code>input/data/original/data.csv</code></p>
+<ul>
+<li>para guardar tablas y cualquier salida producida en R, utilice la función <code>sink</code>. Por ejemplo, para una tabla descriptiva <code>stargazer</code> de<code>data</code>:</li>
+</ul>
+<pre><code>sink(&quot;output/tables/table1.txt&quot;)
+stargazer(data, )
+sink()</code></pre>
+<p>El sentido de esto es señalar primero en qué archivo guardar o “hundir” (sink) lo que viene a continuación, y dejar de guardar con <code>sink ()</code></p>
+<p>Luego, para llamar el archivo desde paper.Rmd:</p>
+<p><code>&lt;div&gt;&lt;object data="output/tables/table1.txt"&gt;&lt;/object&gt;&lt;/div&gt;</code></p>
+<ul>
+<li>para guardar gráficos, después de producir y ver el gráfico:</li>
+</ul>
+<pre><code>dev.copy(png,&quot;output/graphs/graph1.png&quot;,width=600,
+        height=600); dev.off()</code></pre>
+<p>Luego, para llamar al gráfico desde el archivo paper.Rmd:</p>
+<pre><code>![](output/graphs/graph1.png)</code></pre>
+<h3 id="trabajo-futuro">Trabajo futuro:</h3>
+<ul>
+<li>IPO-RGit: manteniendo la misma estructura básica, esta versión es una actualización para aprovechar todas las herramientas de reproducibilidad, colaboración y publicación ofrecidas por los entornos de trabajo Rmarkdown / Github. Se puede ver un ejemplo de esta implementación de trabajo en progreso <a href="https://juancarloscastillo.github.io/merit-scale/">aquí.</a></li>
+</ul>
+<h2 id="github-activity-feed">Github activity feed</h2>
+<div id="feed">
+
+</div>
+<h1 id="section" class="unnumbered"></h1>
 <p><br><br><br></p>
 </div>
 
