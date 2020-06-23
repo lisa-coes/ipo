@@ -1,0 +1,348 @@
+---
+title: "Preparación Datos ELSOC"
+output:
+  html_document:
+#    toc: true
+#    toc_float: TRUE
+#    code_folding: hide
+     highlight: tango
+     number_sections: TRUE
+# bibliography: referencias.bib
+#link-citations: yes
+---
+
+(Este código está basado en la [Práctica 1](https://multivariada.netlify.app/assignment/01-code/) del curso [Estadística Multivariada](https://multivariada.netlify.app/).)
+
+# Librerías
+
+```{r}
+pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer)
+```
+
+# Datos originales
+
+```{r eval=TRUE}
+# cargamos la base de datos desde carpeta respectiva (siguiendo protocolo IPO)
+load("../input/data/original/ELSOC_W01_v3.10.RData")
+```
+
+```{r}
+dim(elsoc_2016) # dimension de la base
+```
+
+# Selección de variables a utilizar
+
+```{r}
+proc_elsoc <- elsoc_2016 %>% select(c18_09, # percepción meritocracia esfuerzo
+                          c18_10, # percepción meritocracia talento
+                          d01_01, # estatus social subjetivo
+                          m01,    # nivel educacional
+                          m0_sexo,# sexo
+                          m0_edad)# edad
+
+# Comprobar
+names(proc_elsoc)
+```
+
+Mediante el comando `get_label` obtenemos el atributo label de las variables.
+
+```{r}
+sjlabelled::get_label(proc_elsoc)
+```
+
+Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas.
+
+# Procesamiento de variables
+
+Para el procesamiento de cada variable se seguirá el siguiente flujo de trabajo:
+
+a. Descriptivo general
+b. Recodificación: de casos perdidos y otros valores (en caso necesario)
+c. Etiquetado: cambio de nombres de variables y valores (en caso necesario)
+d. Otros ajustes
+
+Y se recomienda también un descriptivo final para revisar que el procesamiento de cada variable está ok.
+
+## Percepción de meritocracia
+
+En ELSOC, las variables que permiten medir la percepción de las personas con respecto al funcionamiento de la meritocracia en Chile son las siguientes:
+
+* [`c18_09`]: "Grado de acuerdo: Las personas son recompensadas por sus esfuerzos" (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)
+* [`c18_10`]: "Grado de acuerdo: Las personas son recompensadas por su inteligencia" (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)
+
+_a. Descriptivo_
+
+Para los descriptivos se utilizará la función `frq`, de la librería `sjmisc`:
+
+```{r}
+frq(proc_elsoc$c18_09)
+frq(proc_elsoc$c18_10)
+```
+
+En ambas variables vemos valores asociados a la opción "No responde" (-999) y "No sabe" (-888), que corresponde definirlos como casos perdidos (en el caso de R, como casos NA). El resto de los valores y etiquetas se encuentran en orden, así que en la recodificiación solo nos haremos cargo de los casos perdidos.
+
+_b. Recodificación_
+
+Para recodificar utilizamos la función `recode`, de la librería `car`
+
+```{r}
+proc_elsoc$c18_09 <- recode(proc_elsoc$c18_09, "c(-888,-999)=NA")
+proc_elsoc$c18_10 <- recode(proc_elsoc$c18_10, "c(-888,-999)=NA")
+```
+
+_c - Etiquetado_
+
+Vamos a dar un nombre más sustantivo a las variables  con la función `rename`, de la librería `dplyr`:
+
+```{r}
+proc_elsoc <- proc_elsoc %>% rename("mesfuerzo"=c18_09, # meritocracia esfuerzo
+                                    "mtalento" =c18_10) # meritocracia talento
+
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$mesfuerzo)
+proc_elsoc$mesfuerzo <- set_label(x = proc_elsoc$mesfuerzo,label = "Recompensa: esfuerzo")
+
+get_label(proc_elsoc$mtalento)
+proc_elsoc$mtalento  <- set_label(x = proc_elsoc$mtalento, label = "Recompensa: talento")
+```
+
+
+_d. Otros ajustes_
+
+Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.
+
+```{r}
+proc_elsoc$pmerit <- (proc_elsoc$mesfuerzo+proc_elsoc$mtalento)/2
+summary(proc_elsoc$pmerit)
+```
+
+```{r}
+get_label(proc_elsoc$pmerit)
+```
+
+Vemos que todavía tiene la etiqueta de la variable "Recompensa: esfuerzo"
+
+```{r}
+proc_elsoc$pmerit  <- set_label(x = proc_elsoc$pmerit, label = "Meritocracia promedio")
+```
+
+
+_Revisión final_
+
+Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:
+
+```{r}
+frq(proc_elsoc$mesfuerzo)
+frq(proc_elsoc$mtalento)
+frq(proc_elsoc$pmerit)
+```
+
+## 4.2. Educación
+
+* [`m01`] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).
+
+_a. Descriptivo_
+
+```{r}
+frq(proc_elsoc$m01)
+```
+
+_b. Recodificación_
+
+- Datos perdidos:
+
+```{r}
+proc_elsoc$m01 <- recode(proc_elsoc$m01, "c(-888,-999)=NA")
+```
+
+- Valores
+
+**Recodificación de acuerdo a las categorías [CINE 2011 (UNESCO)](http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf)**
+
+```
+1.  Sin	estudios                                = [CINE 0   ] =  1
+2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
+3.  Educacion Basica o Preparatoria completa    = [CINE 1,2 ] =  2
+4.  Educacion Media o Humanidades incompleta    = [CINE 3   ] =  3
+5.  Educacion Media o Humanidades completa      = [CINE 3   ] =  3
+6.  Tecnico Superior incompleta                 = [CINE 5   ] =  4
+7.  Tecnico Superior completa                   = [CINE 5   ] =  4
+8.  Universitaria incompleta                    = [CINE 6   ] =  5
+9.  Universitaria completa                      = [CINE 6   ] =  6
+10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6
+```
+```{r}
+# recodificacion usando funcion 'recode' de la libreria car
+proc_elsoc$m01 <- car::recode(proc_elsoc$m01, "c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5")
+```
+
+Comprobar con un nuevo descriptivo:
+
+```{r}
+frq(proc_elsoc$m01)
+```
+
+Se observa que los valores coinciden con la recodificación (los casos se acumulan entre las categorías 1 y 5), pero las etiquetas ahora no coinciden; se soluciona en el siguiente paso.
+
+
+_c. Etiquetado_
+
+Para re-etiquetar valores usamos la función `set_labels`, de la librería `sjlabelled`
+
+```{r}
+proc_elsoc$m01 <- set_labels(proc_elsoc$m01,
+            labels=c( "Primaria incompleta menos"=1,
+                      "Primaria y secundaria baja"=2,
+                      "Secundaria alta"=3,
+                      "Terciaria ciclo corto"=4,
+                      "Terciaria y Postgrado"=5))
+```
+
+Luego renombramos la variable con un nombre más sustantivo
+
+```{r}
+proc_elsoc <- rename(proc_elsoc,"edcine"=m01)
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$edcine)
+proc_elsoc$edcine <- set_label(x = proc_elsoc$edcine,label = "Educación")
+```
+
+
+## Estatus subjetivo
+
+_a. Descriptivo_
+
+* [`d01_01`]: "Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
+
+
+```{r, results='hold'}
+frq(proc_elsoc$d01_01)
+summary(proc_elsoc$d01_01)
+```
+
+_b. Recodificación_
+
+```{r}
+proc_elsoc$d01_01 <- recode(proc_elsoc$d01_01, "c(-888,-999)=NA")
+```
+
+_c. Etiquetado_
+
+- Cambio de nombre de variable a etiqueta más sustantiva ess (estatus social subjetivo)
+
+```{r}
+proc_elsoc <- proc_elsoc %>% rename("ess"=d01_01) # estatus social subjetivo
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$ess)
+proc_elsoc$ess <- set_label(x = proc_elsoc$ess,label = "Estatus Social Subjetivo")
+```
+
+## Sexo
+
+* [`m0_sexo`]	=	Indicar el sexo del entrevistado.
+
+_a. Descriptivo_
+
+```{r}
+frq(proc_elsoc$m0_sexo)
+```
+
+_b. Recodificación_
+
+En general esta variable no tiene problemas de casos perdidos ni de etiquetas, pero de todas maneras vamos a hacer un cambio de acuerdo a convenciones en análisis de datos, donde por lo general hombres tienen valor 0 y mujeres 1:
+
+```{r}
+proc_elsoc$m0_sexo <- car::recode(proc_elsoc$m0_sexo, "1=0;2=1")
+```
+
+_c. Etiquetado_
+
+Y ahora cambiamos las etiquetas de acuerdo a la recodificación anterior:
+
+```{r}
+proc_elsoc$m0_sexo <- set_labels(proc_elsoc$m0_sexo,
+            labels=c( "Hombre"=0,
+                      "Mujer"=1))
+```
+
+
+También el nombre de la variable a algo más simple:
+
+```{r}
+proc_elsoc <- rename(proc_elsoc,"sexo"=m0_sexo)
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$sexo)
+proc_elsoc$sexo <- set_label(x = proc_elsoc$sexo,label = "Sexo")
+```
+
+Revisar con un nuevo descriptivo:
+
+```{r}
+frq(proc_elsoc$sexo)
+```
+
+## Edad
+
+* [`m0_edad`]	=	¿Cuáles su edad? (años cumplidos).
+
+
+_a. Descriptivo_
+
+```{r}
+frq(proc_elsoc$m0_edad)
+```
+
+_b. Recodificación_: no es necesario en este caso
+
+_c. Etiquetado_
+
+Cambio del nombre de la variable a algo más simple:
+
+```{r}
+proc_elsoc <- rename(proc_elsoc,"edad"=m0_edad)
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$edad)
+proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad")
+```
+
+# Generación de base de datos procesada para el análisis
+
+Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función `stargazer` (de la librería homónima)
+
+```{r}
+stargazer(proc_elsoc, type="text")
+```
+
+Y se guarda en la carpetea de datos procesados según protocolo IPO
+
+```{r }
+save(proc_elsoc, file = "../input/data/proc/ELSOC_ess_merit2016.RData")
+```
+
+
+# Información de la sesión de trabajo
+
+```{r}
+sessionInfo()
+```
+

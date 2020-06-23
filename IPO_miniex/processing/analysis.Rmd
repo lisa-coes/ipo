@@ -1,0 +1,193 @@
+---
+title: "Análisis Datos ELSOC"
+output:
+  html_document:
+#    toc: true
+#    toc_float: TRUE
+#    code_folding: hide
+     highlight: tango
+     number_sections: TRUE
+# bibliography: referencias.bib
+#link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+# Librerías
+
+```{r,message=FALSE,warning=FALSE}
+pacman::p_load(dplyr, #Manipulacion de datos
+              stargazer, #Tablas
+              sjmisc, # Tablas
+              summarytools, # Tablas
+              kableExtra, #Tablas
+              sjPlot, #Tablas y gráficos
+              corrplot, # Correlaciones
+              sessioninfo) # Información de la sesión de trabajo
+```
+
+# Cargar base de datos preparada
+
+```{r }
+load("../input/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
+```
+
+- Exploración inicial general de la base de datos
+
+```{r}
+names(proc_elsoc) # Muestra los nombres de las variables de la base de datos
+dim(proc_elsoc) # Dimensiones
+```
+
+En el caso de esta base, `r dim(proc_elsoc)[1]` casos y `r dim(proc_elsoc)[2]` variables
+
+Recordando el contenido de cada variable:
+
+* [`merit`] = Indice promedio de percepción de meritocracia.
+
+* [`ess`] = Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
+
+* [`edcine`] = Nivel educacional(1 = Primaria incompleta menos, 2 = Primaria y secundaria baja, 3 = Secundaria alta, 4 = Terciaria ciclo corto, 5 = Terciaria y Postgrado)
+
+* [`sexo`] = Sexo (O = Hombre; 1 = Mujer)
+
+* [`edad`] = ¿Cuáles su edad? (años cumplidos)
+
+# Descripción de variables
+
+Los resultados referidos a descripción de variables se presentan en dos momentos del reporte de investigación:
+
+- en la sección de _metodología_, cuando se presentan las variables del estudio en una  **tabla descriptiva** de variables.
+
+- en la sección de _análisis_, que en general comienza con una exploración de **asociaciones entre variables**, también conocido como análisis descriptivo.
+
+## Tabla descriptiva de variables para sección metodológica
+
+A continuación se presentan dos opciones de generar esta tabla descriptiva de variables con distintas librerías de R.
+
+**a. Tabla descriptiva con `stargazer`**
+
+```{r}
+stargazer(proc_elsoc,type = "text")
+```
+
+**b. Tablas descriptivas con `descr`, librería sjmisc**
+
+```{r}
+sjmisc::descr(proc_elsoc)
+```
+
+Seleccionamos algunas columnas específicas con información más relevante con la opción `show`. Además, agregamos la función `kable` para obtener una tabla que luego sea fácilmente publicable en distintos formatos:
+
+```{r}
+sjmisc::descr(proc_elsoc,
+      show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+      kable(.,"markdown")
+```
+**c. Tabla descriptiva con `summarytools::dfSummary`**
+
+Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.
+
+Se específica de la siguiente manera:
+
+```{r}
+dfSummary(proc_elsoc, plain.ascii = FALSE)
+```
+
+Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:
+
+```{r echo=FALSE}
+print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
+```
+
+**Nota sobre casos perdidos (NAs)**
+
+Se recomienda el siguiente procedimiento:
+
+- respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.
+- contamos el número de casos con el comando `dim`
+- contamos el número de casos perdidos con `sum(is.na(proc_elsoc))`
+- borramos los casos perdidos con `proc_elsoc <-na.omit(proc_elsoc)`
+- contamos nuevamente con `dim` para asegurarnos que se borraron
+- y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el comando `copy_labels`, de la librería `sjlabelled`.
+
+```{r}
+proc_elsoc_original <-proc_elsoc
+dim(proc_elsoc)
+sum(is.na(proc_elsoc))
+proc_elsoc <-na.omit(proc_elsoc)
+dim(proc_elsoc)
+proc_elsoc <-sjlabelled::copy_labels(proc_elsoc,proc_elsoc_original)
+```
+
+## Exploración de asociación entre variables
+
+### Tablas de contingencia para variables categóricas
+
+```{r}
+sjt.xtab(proc_elsoc$edcine, proc_elsoc$sexo,
+        show.col.prc=TRUE,
+        show.summary=FALSE
+)
+```
+
+### Tablas de promedio de variable continua por una categóricas
+
+```{r}
+tapply(proc_elsoc$pmerit, proc_elsoc$edcine, mean)
+```
+
+```{r}
+proc_elsoc %>% # se especifica la base de datos
+  select(pmerit,edcine) %>% # se seleccionan las variables
+  dplyr::group_by(Educación=sjlabelled::as_label(edcine)) %>% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
+  dplyr::summarise(Obs.=n(),Promedio=mean(pmerit),SD=sd(pmerit)) %>% # se agregan las operaciones a presentar en la tabla
+  kable(, format = "markdown") # se genera la tabla
+```
+
+```{r warning=FALSE}
+plot_grpfrq(proc_elsoc$pmerit,proc_elsoc$edcine,
+            type = "box")
+```
+
+#### Correlaciones (variables continuas)
+
+```{r}
+M <- cor(proc_elsoc)
+M
+```
+
+```{r}
+sjt.corr(proc_elsoc,
+         triangle = "lower")
+```
+
+```{r}
+corrplot.mixed(M)
+```
+
+```{r}
+names(proc_elsoc)
+plot_scatter(proc_elsoc, edad, ess)
+```
+
+# Contraste de hipótesis
+
+```{r}
+reg1 <- lm(pmerit ~ ess + edcine + sexo + edad, data=proc_elsoc)
+summary(reg1)
+```
+```{r results='asis'}
+stargazer(reg1, type = "html")
+```
+
+
+# Información de la sesión de R
+
+```{r}
+sessionInfo()
+```
+
