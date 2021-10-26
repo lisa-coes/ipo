@@ -13,6 +13,7 @@
 
 <title>IPO-eng</title>
 
+<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -327,7 +328,8 @@ $(document).ready(function () {
 
 
 <div class="mycontent">
-<h1 id="ipo-input-processing-output-protocol-0.1-for-reproducible-research">IPO (Input-Processing-Output) Protocol 0.1 for Reproducible Research</h1>
+<div id="ipo-input-processing-output-protocol-0.1-for-reproducible-research" class="section level1">
+<h1>IPO (Input-Processing-Output) Protocol 0.1 for Reproducible Research</h1>
 <p>To download the protocol folder structure click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">here</a>.</p>
 <hr />
 <p>This is a project folder template pretty much based on the <strong>TIER</strong> protocol (Teaching Integrity in Empirical Research). TIER “promotes the integration of principles and practices related to transparency and replicability in the research training of social scientists.” (more information in <a href="https://www.projecttier.org/">https://www.projecttier.org/</a>).</p>
@@ -340,7 +342,8 @@ $(document).ready(function () {
 <li><p>the Data folder is also simplified, including now only an “Original” and “Processed” structure.</p></li>
 <li><p>it modifies the files to .md (Markdown files) instead of .txt, which is a plain text language that can be then converted to other formats such as pdf and/or html (for instance, when using R / Rmarkdown). But, in the core, they are simple txt files with just another extension.</p></li>
 </ul>
-<h3 id="files-folder-structure">Files &amp; Folder Structure</h3>
+<div id="files-folder-structure" class="section level3">
+<h3>Files &amp; Folder Structure</h3>
 <p>To download the protocol folder structure click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">here</a>.</p>
 <pre><code>├── input: external information such as images, documents, bib files
 |   ├── data:
@@ -361,13 +364,17 @@ $(document).ready(function () {
 - README.md : the general introductory file
 - paper.md / paper.html / paper.pdf: the paper
 </code></pre>
-<h3 id="basic-principles">Basic principles</h3>
+</div>
+<div id="basic-principles" class="section level3">
+<h3>Basic principles</h3>
 <ul>
 <li><p>order: work thinking of someone that is not familiar with the project and that should be able to understand it and reproduce it without further instructions. Ot think about yourself in 5 years: will you be able to understand and reproduce this?</p></li>
 <li><p>comment the scripts: record the reasons for any decisions briefly</p></li>
 <li><p>the preparation script should begin loading the original data and nothing else, and should end saving the data in the processed data folder.</p></li>
 </ul>
-<h3 id="notes">Notes</h3>
+</div>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
 <ul>
 <li><p>as the R/Rmarkdown environment allows combining text, analysis &amp; outputs, the corresponding folders (processing &amp; output) could sound redundant. This is probably the case for brief analysis and short reports. Nevertheless, when working on a paper/thesis/group project it is certainly advisable to separate inputs, analysis and outputs for the sake of order and reproducibility despite working with Rmarkdown.</p></li>
 <li><p>for making the work easier in Rstudio you might want to make the <code>project</code> folder a Rproject folder. This will make that the working directory automatically will be referred to the root, besides activating other functions within Rstudio. For this, just go to File-&gt;New project-&gt;Existing directory, and point to the project folder. This will create a file with .Rproj extension that when clicked it will open Rstudio and the project folder as a root. In this way it avoids generating local individual working directories (the R command <code>setwd</code>), which do not facilitates reproducibility.</p></li>
@@ -390,17 +397,25 @@ sink()</code></pre>
         height=600); dev.off()</code></pre>
 <p>Then, to call the graph from the paper.Rmd file:</p>
 <pre><code>![](output/graphs/graph1.png)</code></pre>
-<h3 id="further-work">Further work:</h3>
+</div>
+<div id="further-work" class="section level3">
+<h3>Further work:</h3>
 <ul>
 <li><p>IPO-RGit: maintaining the same basic structure, this version is an upgrade for taking advantage of all the reproducibility, collaboration and publication tools offerede by the Rmarkdown/Github work environments. An example of this wor-in-progress implementation can be seen <a href="https://juancarloscastillo.github.io/merit-scale/">here.</a></p></li>
 <li><p>Spanish translation</p></li>
 </ul>
-<h2 id="github-activity-feed">Github activity feed</h2>
+</div>
+<div id="github-activity-feed" class="section level2">
+<h2>Github activity feed</h2>
 <div id="feed">
 
 </div>
-<h1 id="section" class="unnumbered"></h1>
+</div>
+</div>
+<div id="section" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
 <p><br><br><br></p>
+</div>
 </div>
 
 

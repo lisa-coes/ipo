@@ -9,9 +9,11 @@ output:
      number_sections: TRUE
 # bibliography: referencias.bib
 #link-citations: yes
+
 ---
 
 (Este código está basado en la [Práctica 1](https://multivariada.netlify.app/assignment/01-code/) del curso [Estadística Multivariada](https://multivariada.netlify.app/).)
+
 
 # Librerías
 

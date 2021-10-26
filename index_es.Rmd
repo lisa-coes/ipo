@@ -25,6 +25,9 @@ Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo *
 
 La implementación de la reproducibilidad en este tipo de protocolos se basa en generar un **conjunto de archivos auto-contenidos** organizado en una estructura de proyecto que cualquier persona pueda compartir y ejecutar. En otras palabras, debe tener todo lo que necesita para ejecutar y volver a ejecutar el análisis.
 
+![](https://mfr.de-1.osf.io/export?url=https://osf.io/ftkq8/?direct%26mode=render%26action=download%26public_file=True&initialWidth=848&childId=mfrIframe&parentTitle=OSF+%7C+reproducibiity_relocates_time.png&parentUrl=https://osf.io/ftkq8/&format=2400x2400.jpeg)
+
+
 El protocolo **IPO** sigue la lógica de TIER, pero con algunas innovaciones:
 
 - intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.

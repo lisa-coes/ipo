@@ -13,6 +13,7 @@
 
 <title>IPO-es</title>
 
+<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -327,12 +328,14 @@ $(document).ready(function () {
 
 
 <div class="mycontent">
-<h1 id="ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible">IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible</h1>
+<div id="ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible" class="section level1">
+<h1>IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible</h1>
 <p>Para bajar un ejemplo de la estructura de carpetas click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
 <p>Comentarios y sugerencias a: <a href="juancastillov@uchile.cl">juancastillov@uchile.cl</a></p>
 <hr />
 <p>Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo <strong>TIER</strong> (Integridad de Enseñanza en Investigación Empírica). TIER “promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales”. (más información en <a href="https://www.projecttier.org/">https://www.projecttier.org/</a>).</p>
 <p>La implementación de la reproducibilidad en este tipo de protocolos se basa en generar un <strong>conjunto de archivos auto-contenidos</strong> organizado en una estructura de proyecto que cualquier persona pueda compartir y ejecutar. En otras palabras, debe tener todo lo que necesita para ejecutar y volver a ejecutar el análisis.</p>
+<p><img src="https://mfr.de-1.osf.io/export?url=https://osf.io/ftkq8/?direct%26mode=render%26action=download%26public_file=True&amp;initialWidth=848&amp;childId=mfrIframe&amp;parentTitle=OSF+%7C+reproducibiity_relocates_time.png&amp;parentUrl=https://osf.io/ftkq8/&amp;format=2400x2400.jpeg" /></p>
 <p>El protocolo <strong>IPO</strong> sigue la lógica de TIER, pero con algunas innovaciones:</p>
 <ul>
 <li><p>intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.</p></li>
@@ -340,7 +343,8 @@ $(document).ready(function () {
 <li><p>la carpeta de datos también se simplifica, incluyendo ahora solo una estructura “original” y “procesada”.</p></li>
 <li><p>modifica los archivos a .md/.Rmd (archivos Markdown) en lugar de .txt. Markdown es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Rmarkdown). Pero, en el fondo, son simples archivos txt con solo otra extensión.</p></li>
 </ul>
-<h3 id="archivos-y-estructura-de-carpetas">Archivos y estructura de carpetas</h3>
+<div id="archivos-y-estructura-de-carpetas" class="section level3">
+<h3>Archivos y estructura de carpetas</h3>
 <p>Para descargar un ejemplo de la estructura de carpetas del protocolo, haga click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
 <p>La estructura se detalla en el siguiente esquema:</p>
 <pre><code>├── input: información externa como datos, imágenes, .bib:
@@ -362,7 +366,9 @@ $(document).ready(function () {
 - readme.md : archivo general de introducción
 - paper.md o paper.Rmd / paper.html / paper.pdf: el artículo/paper
 </code></pre>
-<h3 id="principios-básicos">Principios básicos</h3>
+</div>
+<div id="principios-básicos" class="section level3">
+<h3>Principios básicos</h3>
 <ul>
 <li><p><strong>orden</strong>: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?</p></li>
 <li><p><strong>comentar los códigos</strong>: registrar brevemente los motivos de cualquier decisión</p></li>
@@ -370,9 +376,13 @@ $(document).ready(function () {
 </ul>
 <p>El flujo de trabajo asociado a estos principios se presenta en el siguiente esquema:</p>
 <p><img src="https://multivariada.netlify.app/images/produccion2.png" /></p>
-<h3 id="ejemplo">Ejemplo</h3>
+</div>
+<div id="ejemplo" class="section level3">
+<h3>Ejemplo</h3>
 <p>Un ejemplo mínimo para probar la implementación del protocolo se puede bajar <a href="https://juancarloscastillo.github.io/ipo/IPO_miniex/IPO_miniex.tar.gz">aquí</a></p>
-<h3 id="notas">Notas</h3>
+</div>
+<div id="notas" class="section level3">
+<h3>Notas</h3>
 <ul>
 <li><p>como el entorno R / Rmarkdown permite combinar texto, análisis y resultados, las carpetas de procesamiento y output pueden resultar redundantes. Este es probablemente el caso de análisis e informes breves. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad a pesar de trabajar con Rmarkdown.</p></li>
 <li><p>para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta del proyecto una carpeta <strong>Rproject</strong>. Esto hará que el directorio de trabajo se remita automáticamente a la raíz, además de activar otras funciones dentro de Rstudio. Para esto, en Rstudio simplemente vaya a Archivo-&gt; Nuevo proyecto-&gt; Directorio existente y apunte a la carpeta del proyecto. Esto creará un archivo con la extensión .Rproj que, al hacer clic, abrirá Rstudio con la carpeta del proyecto como raíz. De esta manera, evita generar directorios de trabajo individuales locales (el comando R <code>setwd</code>), que no facilitan la reproducibilidad. Si se logra entender por qué no se debe referir en el código a un directorio local (como con <code>setwd</code>), entonces está más cerca de entender el sentido de la reproducibilidad.</p></li>
@@ -396,16 +406,24 @@ sink()</code></pre>
         height=600); dev.off()</code></pre>
 <p>Luego, para llamar al gráfico desde el archivo paper.Rmd:</p>
 <pre><code>![](output/graphs/graph1.png)</code></pre>
-<h3 id="trabajo-futuro">Trabajo futuro:</h3>
+</div>
+<div id="trabajo-futuro" class="section level3">
+<h3>Trabajo futuro:</h3>
 <ul>
 <li>IPO-RGit: manteniendo la misma estructura básica, esta versión es una actualización para aprovechar todas las herramientas de reproducibilidad, colaboración y publicación ofrecidas por los entornos de trabajo Rmarkdown / Github. Se puede ver un ejemplo de esta implementación de trabajo en progreso <a href="https://juancarloscastillo.github.io/merit-scale/">aquí.</a></li>
 </ul>
-<h2 id="github-activity-feed">Github activity feed</h2>
+</div>
+<div id="github-activity-feed" class="section level2">
+<h2>Github activity feed</h2>
 <div id="feed">
 
 </div>
-<h1 id="section" class="unnumbered"></h1>
+</div>
+</div>
+<div id="section" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
 <p><br><br><br></p>
+</div>
 </div>
 
 
