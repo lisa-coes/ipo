@@ -5,17 +5,20 @@ format:
     theme: readable
     css: style.css
     toc: true
+    # toc-float: true
     include-before-body: header_es.html
     include-in-header: head_github-activity.html
 ---
 
-::: mycontent
+<div>
+
 # IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible
 
-Para bajar un ejemplo de la estructura de carpetas click [aquí](https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz).
+Para bajar un ejemplo de la estructura de carpetas click [aquí.](https://github.com/lisa-coes/ipo/tree/a76149bd2d6180850fba5f26113e907f539771f1/IPO_template)
 
-Comentarios y sugerencias a: [juancastillov\@uchile.cl](mailto:juancastillov@uchile.cl)
-:::
+Comentarios y sugerencias a [juancastillov\@uchile.cl](juancastillov@uchile.cl)
+
+</div>
 
 Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo **TIER** (Integridad de Enseñanza en Investigación Empírica). TIER "promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales". (más información en <https://www.projecttier.org/>).
 
@@ -36,30 +39,31 @@ Para descargar un ejemplo de la estructura de carpetas del protocolo, haga click
 
 La estructura se detalla en el siguiente esquema:
 
-├── input: información externa como datos, imágenes, .bib:\
-\| ├── data:\
-│ ├── original : archivos de datos originales y metadatos disponibles\
-│ ├── proc : archivos de datos procesados\
-│ ├── imagenes\
-│ ├── bib: archivos de bibliografía\
-│ ├── prereg: archivos de pre-registro si están disponibles\
-\|\
-├── procesamiento:\
-│ - preparacion.qmd\
-│ - analisis.qmd\
-│\
-├── output: tablas, gráficos y otras salidas del procesamiento.\
-│ ├── graphs\
-│ ├── tables\
+``` plaintext
+├── input: información externa como datos, imágenes, .bib
+│   ├── data
+│   │   ├── original    → archivos de datos originales y metadatos disponibles
+│   │   ├── proc        → archivos de datos procesados
+│   │   ├── imagenes
+│   │   ├── bib         → archivos de bibliografía
+│   │   ├── prereg      → archivos de pre-registro si están disponibles
+│
+├── procesamiento
+│   ├── preparacion.qmd
+│   ├── analisis.qmd
+│
+├── output: tablas, gráficos y otras salidas del procesamiento
+│   ├── graphs
+│   ├── tables
 
--   readme.md : archivo general de introducción
-
--   paper.md o paper.qmd / paper.html / paper.pdf: el artículo/paper
+- readme.md → archivo general de introducción
+- paper.md o paper.qmd / paper.html / paper.pdf → artículo / paper
+```
 
 ### Principios básicos
 
--   **orden**: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?
--   **comentar los códigos**: registrar brevemente los motivos de cualquier decisión.
+-   **Orden**: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?
+-   **Comentar los códigos**: registrar brevemente los motivos de cualquier decisión.
 -   el código de preparación debería comenzar cargando los datos originales y terminar guardando los datos procesados en la carpeta correspondiente (proc).
 
 El flujo de trabajo asociado a estos principios se presenta en el siguiente esquema:

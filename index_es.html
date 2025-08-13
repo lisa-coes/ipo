@@ -1,475 +1,616 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<html>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
 
-<head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>IPO-es</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
 
-<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<script src="index_ES_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_ES_files/libs/quarto-html/quarto.js"></script>
+<script src="index_ES_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_ES_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_ES_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_ES_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_ES_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_ES_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_ES_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_ES_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+
 <link rel="stylesheet" href="github-activity-0.1.5.min.css">
 
+
+
 <script src="//code.jquery.com/jquery-1.11.0.js"></script>
+
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+
 <script type="text/javascript" src="github-activity-0.1.5.min.js"></script>
 
+
+
 <script>
+
 GitHubActivity.feed({
+
 	username: "juancarloscastillo",
+
 	repository: "ipo", // optional
+
 	selector: "#feed",
+
 	limit: 20 // optional
+
 });
-</script>
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
 </script>
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 66px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.section h2 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.section h3 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.section h4 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.section h5 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.section h6 {
-  padding-top: 71px;
-  margin-top: -71px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-<div class="container-fluid main-container">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">IPO</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="index_es.html">Español</a>
-</li>
-<li>
-  <a href="https://github.com/juancarloscastillo/ipo">
-    <span class="fa fa-github fa-lg"></span>
-     
-    
-  </a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible" id="toc-ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible" class="nav-link active" data-scroll-target="#ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible">IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible</a></li>
+  <li><a href="#archivos-y-estructura-de-carpetas" id="toc-archivos-y-estructura-de-carpetas" class="nav-link" data-scroll-target="#archivos-y-estructura-de-carpetas">Archivos y estructura de carpetas</a></li>
+  <li><a href="#principios-básicos" id="toc-principios-básicos" class="nav-link" data-scroll-target="#principios-básicos">Principios básicos</a></li>
+  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo">Ejemplo</a></li>
+  <li><a href="#notas" id="toc-notas" class="nav-link" data-scroll-target="#notas">Notas</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
 <div id="particles-js">
+
   <div id="intro">
-    <h1><font size=100px> IPO</font> </h1>
-    <h1><font size=10px> Input -> Procesamiento -> Output </font></h1>_
-    <p><font size=6> Protocolo para flujo de investigación reproducible </font></p>
+
+    <h1><font size="100px"> IPO</font> </h1>
+
+    <h1><font size="10px"> Input -&gt; Procesamiento -&gt; Output </font></h1>_
+
+    <p><font size="6"> Protocolo para flujo de investigación reproducible </font></p>
+
 </div>
+
 </div>
+
+
 
 <script type="text/javascript" src="particles.js"></script>
+
 <script type="text/javascript" src="app.js"></script>
 
-<div class="fluid-row" id="header">
 
-
-
-<h1 class="title toc-ignore">IPO-es</h1>
-
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IPO-es</h1>
 </div>
 
 
-<div class="mycontent">
-<div id="ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible" class="section level1">
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="ipo-input-procesamiento-output-protocolo-para-flujo-de-investigación-reproducible" class="level1">
 <h1>IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible</h1>
-<p>Para bajar un ejemplo de la estructura de carpetas click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
-<p>Comentarios y sugerencias a: <a href="juancastillov@uchile.cl">juancastillov@uchile.cl</a></p>
-<hr />
-<p>Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo <strong>TIER</strong> (Integridad de Enseñanza en Investigación Empírica). TIER “promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales”. (más información en <a href="https://www.projecttier.org/">https://www.projecttier.org/</a>).</p>
+<p>Para bajar un ejemplo de la estructura de carpetas click <a href="https://github.com/lisa-coes/ipo/tree/a76149bd2d6180850fba5f26113e907f539771f1/IPO_template">aquí.</a></p>
+<p>Comentarios y sugerencias a <a href="juancastillov@uchile.cl">juancastillov@uchile.cl</a></p>
+</section>
+<p>Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo <strong>TIER</strong> (Integridad de Enseñanza en Investigación Empírica). TIER “promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales”. (más información en <a href="https://www.projecttier.org/" class="uri">https://www.projecttier.org/</a>).</p>
 <p>La implementación de la reproducibilidad en este tipo de protocolos se basa en generar un <strong>conjunto de archivos auto-contenidos</strong> organizado en una estructura de proyecto que cualquier persona pueda compartir y ejecutar. En otras palabras, debe tener todo lo que necesita para ejecutar y volver a ejecutar el análisis.</p>
-<p><img src="https://mfr.de-1.osf.io/export?url=https://osf.io/ftkq8/?direct%26mode=render%26action=download%26public_file=True&amp;initialWidth=848&amp;childId=mfrIframe&amp;parentTitle=OSF+%7C+reproducibiity_relocates_time.png&amp;parentUrl=https://osf.io/ftkq8/&amp;format=2400x2400.jpeg" /></p>
+<p><img src="https://mfr.de-1.osf.io/export?url=https://osf.io/ftkq8/?direct%26mode=render%26action=download%26public_file=True&amp;initialWidth=848&amp;childId=mfrIframe&amp;parentTitle=OSF+%7C+reproducibiity_relocates_time.png&amp;parentUrl=https://osf.io/ftkq8/&amp;format=2400x2400.jpeg" class="img-fluid"></p>
 <p>El protocolo <strong>IPO</strong> sigue la lógica de TIER, pero con algunas innovaciones:</p>
 <ul>
-<li><p>intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.</p></li>
-<li><p>agrega una carpeta “Input”, que tiene un alcance más amplio que la carpeta “Datos” original en TIER, pero también otras posibles entradas, como imágenes externas y archivos de bibliografía.</p></li>
-<li><p>la carpeta de datos también se simplifica, incluyendo ahora solo una estructura “original” y “procesada”.</p></li>
-<li><p>modifica los archivos a .md/.Rmd (archivos Markdown) en lugar de .txt. Markdown es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Rmarkdown). Pero, en el fondo, son simples archivos txt con solo otra extensión.</p></li>
+<li>intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.</li>
+<li>agrega una carpeta “Input”, que tiene un alcance más amplio que la carpeta “Datos” original en TIER, pero también otras posibles entradas, como imágenes externas y archivos de bibliografía.</li>
+<li>la carpeta de datos también se simplifica, incluyendo ahora solo una estructura “original” y “procesada”.</li>
+<li>modifica los archivos a .md/.qmd (archivos Quarto) en lugar de .txt. Markdown es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Quarto). Pero, en el fondo, son simples archivos txt con solo otra extensión.</li>
 </ul>
-<div id="archivos-y-estructura-de-carpetas" class="section level3">
-<h3>Archivos y estructura de carpetas</h3>
+<section id="archivos-y-estructura-de-carpetas" class="level3">
+<h3 class="anchored" data-anchor-id="archivos-y-estructura-de-carpetas">Archivos y estructura de carpetas</h3>
 <p>Para descargar un ejemplo de la estructura de carpetas del protocolo, haga click <a href="https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz">aquí</a>.</p>
 <p>La estructura se detalla en el siguiente esquema:</p>
-<pre><code>├── input: información externa como datos, imágenes, .bib:
-|   ├── data:
-│     ├── original : archivos de datos originales y metadatos disponibles
-│     ├── proc     : archivos de datos procesados
-│   ├── imagenes
-│   ├── bib: archivos de bibliografía
-│   ├── prereg: archivos de pre-registro si están disponibles
-|
-├── procesamiento:
-│   - preparacion.Rmd
-│   - analisis.Rmd
+<pre class="plaintext"><code>├── input: información externa como datos, imágenes, .bib
+│   ├── data
+│   │   ├── original    → archivos de datos originales y metadatos disponibles
+│   │   ├── proc        → archivos de datos procesados
+│   │   ├── imagenes
+│   │   ├── bib         → archivos de bibliografía
+│   │   ├── prereg      → archivos de pre-registro si están disponibles
 │
-├── output: tablas, gráficos y otras salidas del procesamiento.
+├── procesamiento
+│   ├── preparacion.qmd
+│   ├── analisis.qmd
+│
+├── output: tablas, gráficos y otras salidas del procesamiento
 │   ├── graphs
 │   ├── tables
-|
-- readme.md : archivo general de introducción
-- paper.md o paper.Rmd / paper.html / paper.pdf: el artículo/paper
-</code></pre>
-</div>
-<div id="principios-básicos" class="section level3">
-<h3>Principios básicos</h3>
+
+- readme.md → archivo general de introducción
+- paper.md o paper.qmd / paper.html / paper.pdf → artículo / paper</code></pre>
+</section>
+<section id="principios-básicos" class="level3">
+<h3 class="anchored" data-anchor-id="principios-básicos">Principios básicos</h3>
 <ul>
-<li><p><strong>orden</strong>: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?</p></li>
-<li><p><strong>comentar los códigos</strong>: registrar brevemente los motivos de cualquier decisión</p></li>
-<li><p>el código de preparación debería comenzar a cargando los datos originales y terminar guardando los datos procesados en la carpeta correspondiente (proc).</p></li>
+<li><strong>Orden</strong>: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?</li>
+<li><strong>Comentar los códigos</strong>: registrar brevemente los motivos de cualquier decisión.</li>
+<li>el código de preparación debería comenzar cargando los datos originales y terminar guardando los datos procesados en la carpeta correspondiente (proc).</li>
 </ul>
 <p>El flujo de trabajo asociado a estos principios se presenta en el siguiente esquema:</p>
-<p><img src="https://multivariada.netlify.app/images/produccion2.png" /></p>
-</div>
-<div id="ejemplo" class="section level3">
-<h3>Ejemplo</h3>
+<p><img src="https://multivariada.netlify.app/images/produccion2.png" class="img-fluid"></p>
+</section>
+<section id="ejemplo" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo">Ejemplo</h3>
 <p>Un ejemplo mínimo para probar la implementación del protocolo se puede bajar <a href="https://juancarloscastillo.github.io/ipo/IPO_miniex/IPO_miniex.tar.gz">aquí</a></p>
-</div>
-<div id="notas" class="section level3">
-<h3>Notas</h3>
+</section>
+<section id="notas" class="level3">
+<h3 class="anchored" data-anchor-id="notas">Notas</h3>
 <ul>
-<li><p>como el entorno R / Rmarkdown permite combinar texto, análisis y resultados, las carpetas de procesamiento y output pueden resultar redundantes. Este es probablemente el caso de análisis e informes breves. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad a pesar de trabajar con Rmarkdown.</p></li>
-<li><p>para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta del proyecto una carpeta <strong>Rproject</strong>. Esto hará que el directorio de trabajo se remita automáticamente a la raíz, además de activar otras funciones dentro de Rstudio. Para esto, en Rstudio simplemente vaya a Archivo-&gt; Nuevo proyecto-&gt; Directorio existente y apunte a la carpeta del proyecto. Esto creará un archivo con la extensión .Rproj que, al hacer clic, abrirá Rstudio con la carpeta del proyecto como raíz. De esta manera, evita generar directorios de trabajo individuales locales (el comando R <code>setwd</code>), que no facilitan la reproducibilidad. Si se logra entender por qué no se debe referir en el código a un directorio local (como con <code>setwd</code>), entonces está más cerca de entender el sentido de la reproducibilidad.</p></li>
-<li><p>además de tener una carpeta de proyecto donde está contenida toda la información, la clave técnica para trabajar dentro de esta estructura es guardar y cargar archivos ubicados en diferentes lugares a través de <strong>rutas relativas</strong> (relative paths), lo que permite conectar diferentes archivos dentro del mismo proyecto/carpeta. Por ejemplo, para cargar un archivo de datos desde la carpeta <code>original</code> desde el código <code>preparacion.Rmd</code>:</p></li>
+<li>Como el entorno R / Quarto permite combinar texto, análisis y resultados, las carpetas de procesamiento y output pueden resultar redundantes. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad.</li>
+<li>Para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta del proyecto una carpeta <strong>Rproject</strong>.</li>
+<li>Además de tener una carpeta de proyecto donde está contenida toda la información, la clave técnica es usar <strong>rutas relativas</strong>.</li>
 </ul>
-<pre><code>load(&quot;../input/data/original/data.csv&quot;)</code></pre>
-<p>Los caracteres <code>../</code> significan “un nivel más arriba” en la estructura de carpetas. En este caso, tomando como referencia una secuencia de comandos dentro de la carpeta <code>procesamiento</code>, debemos subir a la carpeta <code>proyecto</code> o raíz, y desde allí bajar a <code>input/data/original/data.csv</code></p>
-<ul>
-<li>para guardar tablas y cualquier salida producida en R, utilice la función <code>sink</code>. Por ejemplo, para una tabla descriptiva <code>stargazer</code> de<code>data</code>:</li>
-</ul>
-<pre><code>sink(&quot;output/tables/table1.txt&quot;)
-stargazer(data, )
-sink()</code></pre>
-<p>El sentido de esto es señalar primero en qué archivo guardar o “hundir” (sink) lo que viene a continuación, y dejar de guardar con <code>sink ()</code></p>
-<p>Luego, para llamar el archivo desde paper.Rmd:</p>
-<p><code>&lt;div&gt;&lt;object data="output/tables/table1.txt"&gt;&lt;/object&gt;&lt;/div&gt;</code></p>
-<ul>
-<li>para guardar gráficos, después de producir y ver el gráfico:</li>
-</ul>
-<pre><code>dev.copy(png,&quot;output/graphs/graph1.png&quot;,width=600,
-        height=600); dev.off()</code></pre>
-<p>Luego, para llamar al gráfico desde el archivo paper.Rmd:</p>
-<pre><code>![](output/graphs/graph1.png)</code></pre>
-</div>
-<div id="trabajo-futuro" class="section level3">
-<h3>Trabajo futuro:</h3>
-<ul>
-<li>IPO-RGit: manteniendo la misma estructura básica, esta versión es una actualización para aprovechar todas las herramientas de reproducibilidad, colaboración y publicación ofrecidas por los entornos de trabajo Rmarkdown / Github. Se puede ver un ejemplo de esta implementación de trabajo en progreso <a href="https://juancarloscastillo.github.io/merit-scale/">aquí.</a></li>
-</ul>
-</div>
-<div id="github-activity-feed" class="section level2">
-<h2>Github activity feed</h2>
-<div id="feed">
+</section>
 
-</div>
-</div>
-</div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
-<p><br><br><br></p>
-</div>
-</div>
-
-
-
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
 });
 </script>
+</div> <!-- /content -->
 
-<!-- code folding -->
 
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 
-</body>
-</html>
+</body></html>
