@@ -10,33 +10,31 @@ output:
           before_body: header_es.html
           in_header: head_github-activity.html
 ---
-<div class="mycontent">
 
-
+:::: mycontent
 # IPO (Input-Procesamiento-Output) Protocolo para flujo de investigación reproducible
 
 Para bajar un ejemplo de la estructura de carpetas click [aquí](https://juancarloscastillo.github.io/ipo/IPO_template/IPO-Project_template.tar.gz).
 
-Comentarios y sugerencias a: [juancastillov@uchile.cl](juancastillov@uchile.cl)
+Comentarios y sugerencias a: [juancastillov\@uchile.cl](juancastillov@uchile.cl)
 
----
+------------------------------------------------------------------------
 
-Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo **TIER** (Integridad de Enseñanza en Investigación Empírica). TIER "promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales". (más información en [https://www.projecttier.org/](https://www.projecttier.org/)).
+Esta es una plantilla/protocolo de carpetas de proyecto basada en el protocolo **TIER** (Integridad de Enseñanza en Investigación Empírica). TIER "promueve la integración de principios y prácticas relacionadas con la transparencia y la replicabilidad en el entrenamiento en investigación de los científicos sociales". (más información en <https://www.projecttier.org/>).
 
 La implementación de la reproducibilidad en este tipo de protocolos se basa en generar un **conjunto de archivos auto-contenidos** organizado en una estructura de proyecto que cualquier persona pueda compartir y ejecutar. En otras palabras, debe tener todo lo que necesita para ejecutar y volver a ejecutar el análisis.
 
 ![](https://mfr.de-1.osf.io/export?url=https://osf.io/ftkq8/?direct%26mode=render%26action=download%26public_file=True&initialWidth=848&childId=mfrIframe&parentTitle=OSF+%7C+reproducibiity_relocates_time.png&parentUrl=https://osf.io/ftkq8/&format=2400x2400.jpeg)
 
-
 El protocolo **IPO** sigue la lógica de TIER, pero con algunas innovaciones:
 
-- intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.
+-   intenta un modelo fácil de memorizar y relacionado con el flujo de trabajo de análisis (Input-Procesamiento-Output = IPO), donde el procesamiento se refiere a la preparación y análisis de datos.
 
-- agrega una carpeta "Input", que tiene un alcance más amplio que la carpeta "Datos" original en TIER, pero también otras posibles entradas, como imágenes externas y archivos de bibliografía.
+-   agrega una carpeta "Input", que tiene un alcance más amplio que la carpeta "Datos" original en TIER, pero también otras posibles entradas, como imágenes externas y archivos de bibliografía.
 
-- la carpeta de datos también se simplifica, incluyendo ahora solo una estructura "original" y "procesada".
+-   la carpeta de datos también se simplifica, incluyendo ahora solo una estructura "original" y "procesada".
 
-- modifica los archivos a .md/.Rmd (archivos Markdown) en lugar de .txt. Markdown  es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Rmarkdown). Pero, en el fondo, son simples archivos txt con solo otra extensión.
+-   modifica los archivos a .md/.Rmd (archivos Markdown) en lugar de .txt. Markdown es un lenguaje de texto con marcas mínimas de formato que luego se pueden convertir a otros formatos como pdf y / o html (por ejemplo, cuando se usa R / Rmarkdown). Pero, en el fondo, son simples archivos txt con solo otra extensión.
 
 ### Archivos y estructura de carpetas
 
@@ -44,8 +42,7 @@ Para descargar un ejemplo de la estructura de carpetas del protocolo, haga click
 
 La estructura se detalla en el siguiente esquema:
 
-
-```
+```         
 ├── input: información externa como datos, imágenes, .bib:
 |   ├── data:
 │     ├── original : archivos de datos originales y metadatos disponibles
@@ -64,78 +61,75 @@ La estructura se detalla en el siguiente esquema:
 |
 - readme.md : archivo general de introducción
 - paper.md o paper.Rmd / paper.html / paper.pdf: el artículo/paper
-
 ```
 
 ### Principios básicos
 
-- **orden**: trabajar pensando en alguien que no esté familiarizado con el proyecto  pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?
+-   **orden**: trabajar pensando en alguien que no esté familiarizado con el proyecto pueda entenderlo y reproducirlo sin mayores instrucciones que la referencia a este protocolo y otra información que esté en el archivo readme.md. O piense en usted dentro de 5 años: ¿podrá comprender y reproducir esto?
 
-- **comentar los códigos**: registrar brevemente los motivos de cualquier decisión
+-   **comentar los códigos**: registrar brevemente los motivos de cualquier decisión
 
-- el código de preparación debería comenzar a cargando los datos originales y  terminar guardando los datos procesados en la carpeta correspondiente (proc).
+-   el código de preparación debería comenzar a cargando los datos originales y terminar guardando los datos procesados en la carpeta correspondiente (proc).
 
 El flujo de trabajo asociado a estos principios se presenta en el siguiente esquema:
 
 ![](https://multivariada.netlify.app/images/produccion2.png)
 
-
 ### Ejemplo
 
 Un ejemplo mínimo para probar la implementación del protocolo se puede bajar [aquí](https://juancarloscastillo.github.io/ipo/IPO_miniex/IPO_miniex.tar.gz)
 
-
 ### Notas
 
-- como el entorno R / Rmarkdown permite combinar texto, análisis y resultados, las carpetas de procesamiento y output pueden resultar redundantes. Este es probablemente el caso de análisis e informes breves. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad a pesar de trabajar con Rmarkdown.
+-   como el entorno R / Rmarkdown permite combinar texto, análisis y resultados, las carpetas de procesamiento y output pueden resultar redundantes. Este es probablemente el caso de análisis e informes breves. Sin embargo, cuando se trabaja en un proyecto tipo artículo o tesis, es aconsejable separar input, procesamiento y output en aras del orden y la reproducibilidad a pesar de trabajar con Rmarkdown.
 
-- para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta del proyecto una carpeta **Rproject**. Esto hará que el directorio de trabajo se remita automáticamente a la raíz, además de activar otras funciones dentro de Rstudio. Para esto, en Rstudio simplemente vaya a Archivo-> Nuevo proyecto-> Directorio existente y apunte a la carpeta del proyecto. Esto creará un archivo con la extensión .Rproj que, al hacer clic, abrirá Rstudio con la carpeta del proyecto como raíz. De esta manera, evita generar directorios de trabajo individuales locales (el comando R `setwd`), que no facilitan la reproducibilidad. Si se logra entender por qué no se debe referir en el código a un directorio local (como con `setwd`), entonces está más cerca de entender el sentido de la reproducibilidad.
+-   para facilitar el trabajo en Rstudio, es posible que desee hacer de la carpeta del proyecto una carpeta **Rproject**. Esto hará que el directorio de trabajo se remita automáticamente a la raíz, además de activar otras funciones dentro de Rstudio. Para esto, en Rstudio simplemente vaya a Archivo-\> Nuevo proyecto-\> Directorio existente y apunte a la carpeta del proyecto. Esto creará un archivo con la extensión .Rproj que, al hacer clic, abrirá Rstudio con la carpeta del proyecto como raíz. De esta manera, evita generar directorios de trabajo individuales locales (el comando R `setwd`), que no facilitan la reproducibilidad. Si se logra entender por qué no se debe referir en el código a un directorio local (como con `setwd`), entonces está más cerca de entender el sentido de la reproducibilidad.
 
-- además de tener una carpeta de proyecto donde está contenida toda la información, la clave técnica para trabajar dentro de esta estructura es guardar y cargar archivos ubicados en diferentes lugares a través de **rutas relativas** (relative paths), lo que permite conectar diferentes archivos dentro del mismo proyecto/carpeta. Por ejemplo, para cargar un archivo de datos desde la carpeta `original` desde el código `preparacion.Rmd`:
+-   además de tener una carpeta de proyecto donde está contenida toda la información, la clave técnica para trabajar dentro de esta estructura es guardar y cargar archivos ubicados en diferentes lugares a través de **rutas relativas** (relative paths), lo que permite conectar diferentes archivos dentro del mismo proyecto/carpeta. Por ejemplo, para cargar un archivo de datos desde la carpeta `original` desde el código `preparacion.Rmd`:
 
-```
+```         
 load("../input/data/original/data.csv")
 ```
 
-  Los caracteres `../` significan "un nivel más arriba" en la estructura de carpetas. En este caso, tomando como referencia una secuencia de comandos dentro de la carpeta `procesamiento`, debemos subir a la carpeta `proyecto` o raíz, y desde allí bajar a `input/data/original/data.csv`
+Los caracteres `../` significan "un nivel más arriba" en la estructura de carpetas. En este caso, tomando como referencia una secuencia de comandos dentro de la carpeta `procesamiento`, debemos subir a la carpeta `proyecto` o raíz, y desde allí bajar a `input/data/original/data.csv`
 
-- para guardar tablas y cualquier salida producida en R, utilice la función `sink`. Por ejemplo, para una tabla descriptiva `stargazer` de` data`:
+-   para guardar tablas y cualquier salida producida en R, utilice la función `sink`. Por ejemplo, para una tabla descriptiva `stargazer` de`data`:
 
-```
+```         
 sink("output/tables/table1.txt")
 stargazer(data, )
 sink()
 ```
-  El sentido de esto es señalar primero en qué archivo guardar o "hundir" (sink) lo que viene a continuación, y dejar de guardar con `sink ()`
 
-  Luego, para llamar el archivo desde paper.Rmd:
+El sentido de esto es señalar primero en qué archivo guardar o "hundir" (sink) lo que viene a continuación, y dejar de guardar con `sink ()`
+
+Luego, para llamar el archivo desde paper.Rmd:
 
 `<div><object data="output/tables/table1.txt"></object></div>`
 
-- para guardar gráficos, después de producir y ver el gráfico:
+-   para guardar gráficos, después de producir y ver el gráfico:
 
-```
+```         
 dev.copy(png,"output/graphs/graph1.png",width=600,
-      	height=600); dev.off()
+        height=600); dev.off()
 ```
 
-  Luego, para llamar al gráfico desde el archivo paper.Rmd:
+Luego, para llamar al gráfico desde el archivo paper.Rmd:
 
-```
+```         
 ![](output/graphs/graph1.png)
 ```
 
 ### Trabajo futuro:
 
-- IPO-RGit: manteniendo la misma estructura básica, esta versión es una actualización para aprovechar todas las herramientas de reproducibilidad, colaboración y publicación ofrecidas por los entornos de trabajo Rmarkdown / Github. Se puede ver un ejemplo de esta implementación de trabajo en progreso [aquí.](https://juancarloscastillo.github.io/merit-scale/)
-
+-   IPO-RGit: manteniendo la misma estructura básica, esta versión es una actualización para aprovechar todas las herramientas de reproducibilidad, colaboración y publicación ofrecidas por los entornos de trabajo Rmarkdown / Github. Se puede ver un ejemplo de esta implementación de trabajo en progreso [aquí.](https://juancarloscastillo.github.io/merit-scale/)
 
 ## Github activity feed
 
-<div id="feed"></div>
+::: {#feed}
+:::
 
-
-# {-}
+#  {.unnumbered}
 
 <br><br><br>
-</div>
+::::

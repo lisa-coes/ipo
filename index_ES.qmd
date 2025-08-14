@@ -4,8 +4,8 @@ format:
   html:
     theme: readable
     css: style.css
-    toc: true
-    # toc-float: true
+    toc: false
+    page-layout: full
     include-before-body: header_es.html
     include-in-header: head_github-activity.html
 ---
